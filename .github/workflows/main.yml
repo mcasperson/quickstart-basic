@@ -38,4 +38,4 @@ jobs:
         with:
           push: true
           tags: mcasperson/laravelapp
-          build-args: db_host=172.17.0.1, db_username=laravel, db_database=laravel, db_password=Password01!
+          build-args: db_host=172.17.0.1,db_username=laravel,db_database=laravel,db_password=Password01!
