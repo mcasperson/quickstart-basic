@@ -12,12 +12,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: docker://mysql
-        env:
-          MYSQL_RANDOM_ROOT_PASSWORD: true 
-          MYSQL_DATABASE: laravel
-          MYSQL_USER: laravel 
-          MYSQL_PASSWORD: Password01!
+      - run: >-
+          docker run
+          -d
+          --name mysql 
+          --network laravel 
+          -p 3306:3306 
+          -e MYSQL_RANDOM_ROOT_PASSWORD=true 
+          -e MYSQL_DATABASE=laravel
+          -e MYSQL_USER=laravel 
+          -e MYSQL_PASSWORD=Password01! 
+          mysql
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
