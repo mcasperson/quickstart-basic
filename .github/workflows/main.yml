@@ -27,7 +27,7 @@ jobs:
       - name: Run a one-line script
         run: >-
           docker build . -t laravelapp 
-          --build-arg db_host=host.docker.internal 
+          --build-arg db_host=172.17.0.1
           --build-arg db_username=laravel 
           --build-arg db_database=laravel 
           --build-arg db_password=Password01!
