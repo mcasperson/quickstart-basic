@@ -11,7 +11,8 @@ COPY . /app
 RUN composer install
 RUN DB_HOST=$db_host DB_USERNAME=$db_username DB_PASSWORD=$db_password DB_DATABASE=$db_database php artisan migrate
 RUN DB_HOST=$db_host DB_USERNAME=$db_username DB_PASSWORD=$db_password DB_DATABASE=$db_database vendor/bin/phpunit
-RUN echo $'php artisan migrate\n\
-php artisan serve --host 0.0.0.0' > /app/start.sh
+RUN echo "#!/bin/sh\n" \
+	"php artisan migrate\n" \
+	"php artisan serve --host 0.0.0.0" > /app/start.sh
 RUN chmod +x /app/start.sh
 CMD ["/app/start.sh"]
