@@ -1,0 +1,29 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: uses: docker://mysql
+        env:
+          MYSQL_RANDOM_ROOT_PASSWORD: true 
+          MYSQL_DATABASE: laravel
+          MYSQL_USER: laravel 
+          MYSQL_PASSWORD: Password01!
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: >-
+          docker build . -t laravelapp 
+          --build-arg db_host=host.docker.internal 
+          --build-arg db_username=laravel 
+          --build-arg db_database=laravel 
+          --build-arg db_password=Password01!
