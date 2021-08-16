@@ -16,7 +16,6 @@ jobs:
           docker run
           -d
           --name mysql 
-          --network laravel 
           -p 3306:3306 
           -e MYSQL_RANDOM_ROOT_PASSWORD=true 
           -e MYSQL_DATABASE=laravel
