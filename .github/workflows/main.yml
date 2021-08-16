@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: uses: docker://mysql
+      - uses: docker://mysql
         env:
           MYSQL_RANDOM_ROOT_PASSWORD: true 
           MYSQL_DATABASE: laravel
