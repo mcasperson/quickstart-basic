@@ -1,18 +1,16 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI
 
 on:
   push:
-    branches: [ master ]
-  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: >-
+
+      - name: Run MySQL in the background
+        run: >-
           docker run
           -d
           --name mysql 
@@ -37,7 +35,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: mcasperson/laravelapp
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/laravelapp
           build-args: |
             db_host=172.17.0.1
             db_username=laravel
