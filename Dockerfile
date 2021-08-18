@@ -14,7 +14,6 @@ RUN DB_HOST=$db_host DB_USERNAME=$db_username DB_PASSWORD=$db_password DB_DATABA
 RUN DB_HOST=$db_host DB_USERNAME=$db_username DB_PASSWORD=$db_password DB_DATABASE=$db_database vendor/bin/phpunit
 RUN echo "#!/bin/sh\n" \
 	"php artisan migrate\n" \
-	"echo \"PORT: $PORT\"\n" \
 	"php artisan serve --host 0.0.0.0 --port \$PORT" > /app/start.sh
 RUN chmod +x /app/start.sh
 CMD ["/app/start.sh"]
