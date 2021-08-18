@@ -10,6 +10,7 @@ RUN wget https://raw.githubusercontent.com/composer/getcomposer.org/master/web/i
 WORKDIR /app
 COPY . /app
 RUN composer install
+RUN touch /app/database/database.sqlite
 RUN DB_HOST=$db_host DB_USERNAME=$db_username DB_PASSWORD=$db_password DB_DATABASE=$db_database php artisan migrate
 RUN DB_HOST=$db_host DB_USERNAME=$db_username DB_PASSWORD=$db_password DB_DATABASE=$db_database vendor/bin/phpunit
 RUN echo "#!/bin/sh\n" \
